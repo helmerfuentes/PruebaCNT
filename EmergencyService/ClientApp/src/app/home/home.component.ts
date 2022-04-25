@@ -12,7 +12,6 @@ export class HomeComponent  implements OnInit{
  
   public base:string 
   public reporte:ReporteResponse
-  public listaPacienteOrderRiesgo:PacienteResponse[]=[]
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
   this.base=baseUrl
@@ -22,9 +21,7 @@ export class HomeComponent  implements OnInit{
 
   ngOnInit(): void {
    this.http.get<Response<ReporteResponse>>(this.base + 'api/paciente').subscribe(result => {
-      this.reporte=result.data
-      this.listaPacienteOrderRiesgo= result.data.pacientes.sort(((b, a) => a.riesgo - b.riesgo));  
-    
+     this.reporte = result.data;
     }, error => console.error(error));
   }
 
@@ -36,18 +33,15 @@ export class HomeComponent  implements OnInit{
   }
 
   eliminarDatoMemoria(key:number){
-    var i=this.reporte.pacientes.filter(x=>x.key!=key);
-    var j=this.listaPacienteOrderRiesgo.filter(x=>x.key!=key);
-    this.reporte.pacientes=[];
-    this.listaPacienteOrderRiesgo=[]
-    this.reporte.pacientes=i;
-    this.listaPacienteOrderRiesgo=j
-    // console.log(nuevoArray1);
-    // console.log(nuevoArray2);
-    
-    
-    // this.reporte.pacientes=nuevoArray1
-    // this.listaPacienteOrderRiesgo=nuevoArray2
+    var i=this.reporte.pacientesOrdeRiesgo.filter(x=>x.key!=key);
+    var j=this.reporte.pacientesOrdenPrioridad.filter(x=>x.key!=key);
+
+    this.reporte.pacientesOrdeRiesgo=[];
+    this.reporte.pacientesOrdenPrioridad=[];
+    this.reporte.pacientesOrdeRiesgo=i;
+    this.reporte.pacientesOrdenPrioridad=j;
+  
+  
 
   }
 
@@ -66,14 +60,15 @@ export class PacienteResponse{
   Fumador:string
   Dieta :string
   PesoEstatura :number
-  Prioridad :number
+  prioridad :number
   riesgo :number
   TiempoFumando :number
   Estado :string
 }
 
 export class ReporteResponse{
-pacientes:PacienteResponse[]=[]
+pacientesOrdenPrioridad:PacienteResponse[]=[]
+pacientesOrdeRiesgo:PacienteResponse[]=[]
 pacienteMenorEdad:string
 pacienteMayorEdad:string
 pacienteFumador:string

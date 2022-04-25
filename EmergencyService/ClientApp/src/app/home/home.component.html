@@ -64,7 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of listaPacienteOrderRiesgo">
+            <tr *ngFor="let item of reporte.pacientesOrdeRiesgo">
              
               <td>{{item.documento}}</td>
               <td>{{item.nombres}}</td>
@@ -95,7 +95,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of reporte.pacientes">
+            <tr *ngFor="let item of reporte.pacientesOrdenPrioridad">
               
               <td>{{item.documento}}</td>
               <td>{{item.nombres}}</td>

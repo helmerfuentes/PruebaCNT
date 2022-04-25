@@ -7,7 +7,8 @@ namespace EmergencyService.Models.Response
 {
     public class ReporteResponse
     {
-        public IEnumerable<PacienteResponse> Pacientes { get; set; }
+        public IEnumerable<PacienteResponse> PacientesOrdeRiesgo { get; set; }
+        public IEnumerable<PacienteResponse> PacientesOrdenPrioridad { get; set; }
         public string PacienteFumador { get; set; }
         public string PacienteMenorEdad { get; set; }
         public string PacienteMayorEdad { get; set; }

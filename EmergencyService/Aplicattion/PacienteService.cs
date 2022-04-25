@@ -30,12 +30,13 @@ namespace EmergencyService.Aplicattion
             var fumador = pacienteprioridad.Find(x => x.Fumador);
             var mayorPriordidad = fumador!=null? (fumador.Nombres+" " + pacienteprioridad.Find(x => x.Fumador).Apellidos):"No hay pacientes";
 
-                 response = new ReporteResponse
+                response = new ReporteResponse
                 {
                     PacienteFumador = mayorPriordidad,
                     PacienteMayorEdad = mayorEdad,
                     PacienteMenorEdad = menorEdad,
-                    Pacientes = pacienteprioridad.Select(x => new PacienteResponse(x))
+                    PacientesOrdenPrioridad = pacienteprioridad.Select(x => new PacienteResponse(x)),
+                    PacientesOrdeRiesgo = pacienteprioridad.Select(x => new PacienteResponse(x)).OrderByDescending(x => x.Riesgo)
                 };
             }
             else
@@ -45,7 +46,8 @@ namespace EmergencyService.Aplicattion
                     PacienteFumador = "No hay paciente",
                     PacienteMayorEdad = "No hay paciente",
                     PacienteMenorEdad = "No hay paciente",
-                    Pacientes = pacienteprioridad.Select(x => new PacienteResponse(x))
+                    PacientesOrdenPrioridad = pacienteprioridad.Select(x => new PacienteResponse(x)),
+                    PacientesOrdeRiesgo = pacienteprioridad.Select(x => new PacienteResponse(x)).OrderByDescending(x => x.Prioridad)
                 };
             }
             
