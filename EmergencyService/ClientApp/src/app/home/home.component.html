@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex no-block">
+            <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../../assets/images/staff.png" alt="Income"></div>
+            <div class="align-self-center">
+              <h6 class="text-muted m-t-10 m-b-0">Fumador</h6>
+              <h2 class="m-t-0">{{reporte?.pacienteFumador}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex no-block">
+            <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../../assets/images/staff.png" alt="Income"></div>
+            <div class="align-self-center">
+              <h6 class="text-muted m-t-10 m-b-0">Menor edad</h6>
+              <h2 class="m-t-0">{{reporte?.pacienteMenorEdad}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex no-block">
+            <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../../assets/images/staff.png" alt="Income"></div>
+            <div class="align-self-center">
+              <h6 class="text-muted m-t-10 m-b-0">Mayor edad</h6>
+              <h2 class="m-t-0">{{reporte?.pacienteMayorEdad}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row justify-content-end">
+    <div class="col-4">
+      <button [routerLink]="['/fetch-data']" class="btn btn-primary" >Agregar paciente</button>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col">
+    
+      <div class="container table-responsive py-5"> 
+        <table class="table table-bordered table-hover">
+          <thead >
+            <tr>
+              
+              <th scope="col">Documento</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Riesgo</th>
+              <th scope="col">Prioridad</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listaPacienteOrderRiesgo">
+             
+              <td>{{item.documento}}</td>
+              <td>{{item.nombres}}</td>
+              <td>{{item.edad}}</td>
+              <td>{{item.riesgo}}</td>
+              <td>{{item.prioridad}}</td>
+              <td><button type="button" (click)="atender(item)" class="btn btn-outline-primary">Atender</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col">
+    
+      <div class="container table-responsive py-5"> 
+        <table class="table table-bordered table-hover">
+          <thead >
+            <tr>
+              
+              <th scope="col">Documento</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Riesgo</th>
+              <th scope="col">Prioridad</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of reporte.pacientes">
+              
+              <td>{{item.documento}}</td>
+              <td>{{item.nombres}}</td>
+              <td>{{item.edad}}</td>
+              <td>{{item.riesgo}}</td>
+              <td>{{item.prioridad}}</td>
+              <td><button type="button" (click)="atender(item)" class="btn btn-outline-primary">Atender</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+    </div>
+  </div>
+
+</div>
